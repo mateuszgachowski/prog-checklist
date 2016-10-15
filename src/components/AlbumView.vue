@@ -7,21 +7,19 @@
 </template>
 
 <script>
-import { toggleDone } from '../actions'
+import { toggleDone } from '../actions';
+import store from '../store';
 
 export default {
     name: 'AlbumView',
     props: ['album'],
-    vuex: {
-        getters: {
-            doneAlbums: (state) => state.doneAlbums
-        },
-        actions: {
-            toggleDone
-        }
+
+    methods: {
+        toggleDone: store.dispatch.bind(store, 'toggleDone')
     },
 
     computed: {
+        doneAlbums: () => store.state.doneAlbums,
         isDone: function () {
             return (this.doneAlbums.indexOf(this.album.id) !== -1)
         }

@@ -1,25 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
 import store from './store'
 import App from './components/App.vue'
 import AlbumsListView from './components/AlbumsListView.vue'
 
-
 // install router
-Vue.use(Router)
+Vue.use(VueRouter);
 
 // routing
-var router = new Router()
+var router = new VueRouter({
+    routes: [
+        {
+            path: '/',
+            component: AlbumsListView
+        }
+    ]
+});
 
-router.map({
-    '/albums/': {
-        component: AlbumsListView
-    }
-})
-
-router.beforeEach(function () {
+router.afterEach(function () {
     window.scrollTo(0, 0)
 })
 
@@ -27,4 +27,7 @@ router.beforeEach(function () {
 //   '*': '/albums/1'
 // })
 
-router.start(App, '#app')
+const app = new Vue({
+    store,
+    router
+}).$mount('#app')

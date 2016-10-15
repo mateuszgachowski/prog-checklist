@@ -1,16 +1,22 @@
 <script>
 import AlbumView from './AlbumView.vue'
+import store from '../store';
 
 export default {
     name: 'AlbumsListView',
 
-    vuex: {
-        getters: {
-            albums: (store) => store.albums
-        }
+    computed: {
+        albums: () => store.state.albums
+    },
+    methods: {
+        getAlbums: store.dispatch.bind(store, 'getAlbums')
     },
     components: {
         AlbumView
+    },
+
+    mounted () {
+        this.getAlbums();
     }
 }
 </script>
