@@ -1,0 +1,12 @@
+{
+    "preset" : "crockford", //  javascript.crockford.com/code.html
+    "requireMultipleVarDecl": null,
+    "disallowMultipleVarDecl": true,
+    "disallowSpaceAfterObjectKeys": {"allExcept": ["method"]},
+    "requireCamelCaseOrUpperCaseIdentifiers": true,
+    "requireVarDeclFirst": false,
+    "disallowDanglingUnderscores": {
+        "allExcept": [ "_", "_private", "_cio" ]
+    },
+    "disallowTrailingComma": null
+}

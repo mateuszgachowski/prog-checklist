@@ -16,5 +16,7 @@ export default {
 </script>
 
 <template>
-    <album-view v-for="album in albums" :album="album"></album-view>
+    <div>
+        <album-view v-for="album in albums" :album="album"></album-view>
+    </div>
 </template>

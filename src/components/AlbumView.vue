@@ -2,7 +2,7 @@
     <div class="item-view">
         <s v-if="isDone">{{ album.id }} {{ album.title }}</s>
         <template v-else>{{ album.id }} {{ album.title }}</template>
-        <button @click="toggleDone(album)"
+        <button @click="toggleDone(album)"></button>
     </div>
 </template>
 
