@@ -28,7 +28,7 @@ const authCodeGrant = function (code) {
 const getMyAlbums = function () {
     return new Promise(function (resolve, reject) {
         spotifyApi.getMySavedAlbums({
-            limit: 10,
+            limit: 50,
             offset: 0
         })
         .then(resolve, reject);
