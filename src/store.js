@@ -11,24 +11,46 @@ export const STORAGE_KEY = 'prog-checklist'
 const state = {
     albums: [],
 
-    doneAlbums: JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'),
+    doneAlbums: JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'),
 }
 
 const mutations = {
     TOGGLE_DONE (state, album) {
-        if (state.doneAlbums.indexOf(album.id) !== -1) {
-            state.doneAlbums.splice(state.doneAlbums.indexOf(album.id), 1);
+        if (state.doneAlbums[album.id]) {
+            state.doneAlbums[album.id].done = !state.doneAlbums[album.id].done;
+        }
+    },
+
+    SET_RATING (state, data) {
+        const album = data.album;
+        const rating = data.rating;
+
+        if (state.doneAlbums[album.id]) {
+            state.doneAlbums[album.id].rating = rating;
+
+            if (rating > 0) {
+                state.doneAlbums[album.id].done = true;
+            }
         } else {
-            state.doneAlbums.push(album.id);
+            Vue.set(state.doneAlbums, album.id, {
+                rating: rating,
+                done: true,
+                date: new Date(),
+            });
         }
     },
 
     ADD_ALBUMS (state, albums) {
+        const thumbSearch = (image) => image.height > 200;
         const filteredAlbums = albums.forEach(function (item, id) {
+
+            const thumbImage = item.album.images.find(thumbSearch);
+
             state.albums.push({
-                id: id + 1,
+                id: item.album.id,
                 title: item.album.name,
                 band: item.album.artists ? item.album.artists[0].name : '',
+                thumb: thumbImage,
             })
         });
     }

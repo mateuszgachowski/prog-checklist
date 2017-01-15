@@ -22,7 +22,15 @@ export default {
 </script>
 
 <template>
-    <div>
+    <div class="albums-list">
         <album-view v-for="album in albums" :album="album"></album-view>
     </div>
 </template>
+
+<style lang="sass">
+    .albums-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+</style>
